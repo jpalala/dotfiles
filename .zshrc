@@ -2,9 +2,17 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Path to your oh-my-zsh installation.USR=$USER
+MACHINE="SERVER"
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/macuser/.oh-my-zsh"
-export PATH=$PATH:/Users/macuser/Library/Python/3.7/bin
+if [ $MARCHINE != "SERVER" ]
+        export ZSH="/Users/$USER/.oh-my-zsh"
+else
+        export ZSH="$HOME/.oh-my-zsh"
+fi
+
+
+export PATH=$PATH:$HOME/Library/Python/3.7/bin
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
