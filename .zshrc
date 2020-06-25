@@ -115,7 +115,14 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 # COMPOSER GLOBAL
 export PATH="/Users/macuser/.composer/vendor/bin:$PATH"
+
+# Use Pure Prompt
+
 autoload -U promptinit; promptinit
+PURE_PROMPT_SYMBOL=»
+PURE_CMD_MAX_EXEC_TIME=10
+zstyle ':prompt:pure:prompt:*' color default
+zstyle :prompt:pure:path color 220
+zstyle :prompt:pure:git:stash show yes
+
 prompt pure
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-source ~/z.sh
