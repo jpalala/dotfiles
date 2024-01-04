@@ -1,0 +1,125 @@
+git_current_branch() {
+        local ref
+        ref=$(command git symbolic-ref --quiet HEAD 2> /dev/null) 
+        local ret=$? 
+        if [[ $ret != 0 ]]
+        then
+                [[ $ret == 128 ]] && return
+                ref=$(command git rev-parse --short HEAD 2> /dev/null)  || return
+        fi
+        echo ${ref#refs/heads/}
+}
+
+alias develop='git checkout -b develop'
+alias g-pull='git pull'
+alias g-ll='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'
+alias g-fetchall='git fetch --all'
+alias glg='git log --stat'
+alias glgg='git log --graph'
+alias gg='git log --pretty --oneline'
+alias g-staged='git diff --name-only --cached'
+alias gcommit='git commit -m '
+alias gsave='git commit -m "WIP \"`date +'%Y-%m-%d'`\""'
+alias glgga='git log --graph --decorate --all'
+alias glgm='git log --graph --max-count=10'
+alias glgp='git log --stat -p'
+alias glo='git log --oneline --decorate'
+alias globurl='noglob urlglobber '
+alias glod='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'\'
+alias glods='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'\'' --date=short'
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --oneline --decorate --graph --all'
+alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'
+alias glola='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --all'
+alias glols='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --stat'
+alias glp=_git_log_prettily
+alias glum='git pull upstream master'
+alias gm='git merge'
+alias gmom='git merge origin/master'
+alias gmt='git mergetool --no-prompt'
+alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
+alias gmum='git merge upstream/master'
+alias gma='git merge --abort'
+alias gp='git pull'
+alias gpush='git push'
+alias gpd='git push --dry-run'
+alias gpf='git push --force-with-lease'
+#'gpf!'='git push --force'
+alias gpoat='git push origin --all && git push origin --tags'
+alias gpristine='git reset --hard && git clean -dffx'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias gpu='git push upstream'
+alias gpv='git push -v'
+alias gr='git remote'
+alias gra='git remote add'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbd='git rebase develop'
+alias grbi='git rebase -i'
+alias grbm='git rebase master'
+alias grbs='git rebase --skip'
+alias ggrep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
+alias grev='git revert'
+alias grh='git reset'
+alias grhh='git reset --hard'
+alias grm='git rm'
+alias grmc='git rm --cached'
+alias grmv='git remote rename'
+alias groh='git reset origin/$(git_current_branch) --hard'
+alias grrm='git remote remove'
+alias grs='git restore'
+alias grset='git remote set-url'
+alias grss='git restore --source'
+alias grt='cd "$(git rev-parse --show-toplevel || echo .)"'
+alias gru='git reset --'
+
+#  wow 
+# suchcommit 
+# very push
+alias such=git 
+alias very=git 
+alias wow=git status -s
+
+alias grup='git remote update'
+alias grv='git remote -v'
+alias gs='git status -s'
+alias gsb='git status -sb'
+alias gsd='git svn dcommit'
+alias gsh='git show'
+alias gsi='git submodule init'
+alias gsps='git show --pretty=short --show-signature'
+alias gsr='git svn rebase'
+alias gss='git status -s'
+
+alias gst='git status'
+alias gst-list='git stash list'
+alias gst-apply='git stash apply'
+alias gst-a='git stash apply'
+alias gst-all='git stash --all'
+alias gst-c='git stash clear'
+alias gst-d='git stash drop'
+alias gst-l='git stash list'
+alias gst-p='git stash pop'
+alias gst-st='git stash show --text'
+alias gst-u='git stash --include-untracked'
+
+alias gsu='git submodule update'
+alias gsw='git switch'
+alias gswc='git switch -c'
+alias gtl='gtl(){ git tag --sort=-v:refname -n -l "${1}*" }; noglob gtl'
+alias gts='git tag -s'
+alias gtv='git tag | sort -V'
+alias gunignore='git update-index --no-assume-unchanged'
+alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+# git pulling
+alias gup='git pull --rebase'
+alias gupa='git pull --rebase --autostash'
+alias gupav='git pull --rebase --autostash -v'
+alias gupv='git pull --rebase -v'
+alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
+alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
+
+
+alias s='source'
+alias sa='s ~/.aliases'
